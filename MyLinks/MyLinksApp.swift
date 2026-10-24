@@ -11,7 +11,7 @@ import SwiftUI
 struct MyLinksApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabbarView()
         }
     }
 }

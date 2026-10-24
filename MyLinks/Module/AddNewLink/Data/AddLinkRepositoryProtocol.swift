@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol AddLinkRepositoryProtocol{
+    func addNewLink(linkData: LinkEntity)throws
+}
