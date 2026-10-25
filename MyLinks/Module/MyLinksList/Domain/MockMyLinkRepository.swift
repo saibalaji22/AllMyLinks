@@ -17,8 +17,20 @@ class MockMyLinkRepository: MyLinksRepositoryProtocol{
         if let errorToThrow{
             throw errorToThrow
         }
+        try self.createMockLinks()
         let allLinks: [Link] = try self.persistenceService.fetchAllData(entityName: "Link")
         let mappedAllLinks: [LinkEntity] = allLinks.map({LinkEntity(name: $0.name ?? "N/A", url: $0.url ?? "", thumbnailData: $0.thumbnailImage ?? Data(), createdDate: $0.createdDate ?? Date(), shareCount: Int($0.shareCount))})
         return mappedAllLinks
+    }
+    func createMockLinks()throws {
+        for i in 1...10{
+            var link = Link(context: persistenceService.persistenceContainer.viewContext)
+            link.name = "Hacking With Swift \(i)"
+            link.createdDate = Date()
+            link.thumbnailImage = Data()
+            link.url = "https://www.hackingwithswift\(i).com"
+            link.shareCount = Int64(0)
+            try self.persistenceService.save()
+        }
     }
 }
