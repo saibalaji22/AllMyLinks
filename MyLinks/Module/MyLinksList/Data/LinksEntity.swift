@@ -8,6 +8,7 @@
 import Foundation
 
 struct LinkEntity{
+
     let name: String
     let url: String
     let thumbnailData: Data
